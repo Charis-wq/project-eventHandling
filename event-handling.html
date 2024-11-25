@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Handling</title>
+</head>
+<body>
+
+    <button onclick="getClick()">Click me!</button>
+    <button id="submit">Submit</button>
+    <p id="teks">teks berubah warna</p>
+    <script>
+        /*event handling adalah konsep yang sangat penting dalam pengembangqn web 
+        ini memungkinkan anda untuk menangkap dan merespon interaksi pengguna 
+        seeprti kllik tombol,gerakan mouse,dan masihbanyak lagi
+        */
+
+        //apa itu event
+        /*event adalah sebuah tindakan atau kejadian yang terjadi di halaman web
+        contohnya adalah klik pada tombol,pengisian formulir, atau pengguliran halaman 
+        event ini biasanya di tangkap dan di tangani menggunakan javascript
+        */
+
+        //event listener
+        /*event listener adalah mekanisme untuk menangkap event dan menjalankan fungsi
+        tertentuketika event tersebut terjadi.
+        caramenggunakan Event Listener ada 2 cara yaitu menggunakan Oneclick(inline event handling)
+        dan menggunakan addEventListener(javascript).
+        */
+        //menggunakan oneClick
+       // function getClick (){
+         //   alert('Di click');
+
+        //}
+
+         //menggunakan addEventListener
+        const button =document.getElementById('submit');
+        button.addEventListener('click', () => {
+            alert('submitted')
+        });
+
+        const teks = document.getElementById('teks');
+        function getClick (){
+            teks.style.backgroundColor = 'blue';
+        }
+        teks.addEventListener('mouseover', () =>{
+            teks.style.color = 'yellow';
+        });
+        teks.addEventListener('mouseout', () =>{
+            teks.style.color = 'black';
+        });
+
+
+
+
+    </script>
+</body>
+</html>
