@@ -1,33 +1,36 @@
 //membuat object operator
 const calculator = {
+                  
+
     displayValue: '0',
     firstOperand: null,
     waitingForSecondOperand: false,
     operator: null 
-};
+}
 
 //membuat function
 function updateDisplay(){
-    const display = document.querySelector('.calculator-display');
-    display.value = calculator.displayValue ;
+    const display = document.querySelector('.calculator-display')
+    display.value = calculator.displayValue 
 }
 
 function inputDigit(digit){
-    const{ displayValue, waitingForSecondOperand} = calculator ;
+    const { displayValue, waitingForSecondOperand} = calculator 
 
     if (waitingForSecondOperand === true){
-        calculator.displayValue = digit;
-        calculator.waitingForSecondOperand = false;
+        calculator.displayValue = digit
+        calculator.waitingForSecondOperand = false
     } else {
         calculator.displayValue = displayValue === '0' ?
         digit : displayValue + digit 
     }
     updateDisplay();
+   
 }
 
 function inputDecimal(dot){
     if (!calculator.displayValue.includes(dot)){
-        calculator.displayValue += dot;
+        calculator.displayValue += dot
     }
 }
 
@@ -45,7 +48,7 @@ function handleOperator(nextOperator){
     } else if (operator){
         const result = calculate(firstOperand, inputValue, operator);
         calculator.displayValue =`${parseFloat(result.toFixed(7))}`
-        calculator.operator = result;
+        calculator.firstOperand = result;
     }
 
     calculator.waitingForSecondOperand = true;
@@ -55,7 +58,7 @@ function handleOperator(nextOperator){
 }
 
 function calculate(firstOperand, secondOperand, operator){
-    if(operatorv === '+'){
+    if(operator === '+'){
         return firstOperand + secondOperand;
     } else if (operator === '-'){
         return firstOperand - secondOperand;
@@ -89,7 +92,7 @@ function handlEqual(){
         calculator.displayValue =`${parseInt(result.toFixed(7))}`;
         calculator.firstOperand = null;
         calculator.operator = null;
-        calculator,waitingForSecondOperand = false;
+        calculator.waitingForSecondOperand = false;
         updateDisplay();
 
     }
