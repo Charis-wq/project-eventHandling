@@ -1,7 +1,5 @@
 //membuat object operator
 const calculator = {
-                  
-
     displayValue: '0',
     firstOperand: null,
     waitingForSecondOperand: false,
@@ -57,15 +55,15 @@ function handleOperator(nextOperator){
     updateDisplay();
 }
 
-function calculate(firstOperand, secondOperand, operator){
+function calculate(firstOperand, inputValue, operator){
     if(operator === '+'){
-        return firstOperand + secondOperand;
+        return firstOperand + inputValue;
     } else if (operator === '-'){
-        return firstOperand - secondOperand;
+        return firstOperand - inputValue;
     } else if (operator === '*'){
-        return firstOperand * secondOperand;
+        return firstOperand * inputValue;
     } else if (operator === '/'){
-        return firstOperand / secondOperand;
+        return firstOperand / inputValue;
     } else if (operator === 'v'){
         return Math.sqrt(firstOperand);
     } else if (operator === '%'){

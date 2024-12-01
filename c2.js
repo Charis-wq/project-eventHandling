@@ -1,8 +1,8 @@
 let input = document.getElementById('inputBox');
-let button = document.querySelectorAll('button');
+let buttons = document.querySelectorAll('button');
 
 let string ='';
-let arr = Array.from(button);
+let arr = Array.from(buttons);
 arr.forEach(button => {
     button.addEventListener('click', (e) =>{
         if(e.target.innerHTML == '=' ){
