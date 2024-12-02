@@ -66,3 +66,10 @@ button:hover{
 #clear:hover{
     background-color: rgb(173, 33, 33);
 }
+.operator{
+    background-color: yellow;
+}
+
+.operator:hover{
+    background-color: rgb(179, 179, 10);
+}

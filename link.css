@@ -1,0 +1,12 @@
+.image{
+    display: flex;
+}
+
+.wraper{
+
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    width: 100%;
+    overflow: hidden;
+}
