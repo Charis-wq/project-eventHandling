@@ -34,16 +34,16 @@ function checkGuess(){
 
 
 function endGame(){
-    guessInput.disable = true;
-    guessButton.disable = true;
+    guessInput.disabled = true;
+    guessButton.disabled = true;
     restartButton.style.display = 'inline'
 }
 
 function resetGame(){
    attempts = 0;
    randomNumber = Math.floor(Math.random() * 100) + 1;
-   guessInput.disable = false;
-   guessButton.disable = false;
+   guessInput.disabled = false;
+   guessButton.disabled = false;
    message.textContent = 'Good Luck! Start Guessing...';
    message.style.color = '#333333';
    restartButton.style.display ='none';

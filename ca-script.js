@@ -47,10 +47,13 @@ function handleOperator(nextOperator){
         const result = calculate(firstOperand, inputValue, operator);
         calculator.displayValue =`${parseFloat(result.toFixed(7))}`
         calculator.firstOperand = result;
+    }else{
+        calculator.waitingForSecondOperand = true;
+        calculator.operator = nextOperator;
+    
     }
 
-    calculator.waitingForSecondOperand = true;
-    calculator.operator = nextOperator;
+    
 
     updateDisplay();
 }
