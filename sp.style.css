@@ -28,5 +28,18 @@ body{
 }
 
 .tool{
-    
+    background-color: #eeeeee;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.tool.active{
+    background-color: #cccccc;
+}
+
+canvas{
+    border: 1px solid #000000;
+    border-radius: 4px;
+    background-color: #ffffff;
 }
