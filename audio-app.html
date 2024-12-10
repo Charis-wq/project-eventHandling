@@ -8,23 +8,33 @@
 </head>
 <body>
     <div class="container">
-        <div class="audio-controls">
-            <button id="play-pause" class="play-button">
-                <!--svg play icon-->
-                <svg width="64px" height="64px" viewBox="0 0 21 21" 
-                xmlns="http://www.w3.org/2000/svg" fill="#000000">
-                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" 
-                stroke-linejoin="round"></g>
-                <g id="SVGRepo_iconCarrier"> 
-                    <g fill="none" fill-rule="evenodd" 
-                    stroke="#088cdd" stroke-linecap="round" stroke-linejoin="round" 
-                    transform="translate(2 5)"> 
-                    <path d="m2.49368982.53498937 11.99999998-.03787142c1.0543566-.00331643 1.9207298.80983192 2.0003436 1.84444575l.0059666.15555425v6.00288205c0 1.1045695-.8954305 2-2 2h-12c-1.1045695 0-2-.8954305-2-2v-5.96502059c0-1.10210602.89158929-1.9965128 1.99368982-1.99999004z"></path> <path d="m7.5 7.5 3-2-3-2z" fill="#088cdd"></path> </g> </g></svg>
-
-            </button>
+        <div class="audio-player">
+            <div class="audio-controls">
+                <button id="play-pause" class="play-button">
+                    <!--svg play icon-->
+                    <!--play button-->
+                    <svg id="play-icon" fill="#0eaec4" height="64px" width="64px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" stroke="#0eaec4"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <g> <g> <path d="M256,0C114.511,0,0,114.497,0,256c0,141.49,114.495,256,256,256c141.49,0,256-114.497,256-256C512,114.51,397.503,0,256,0 z M348.238,284.418l-120.294,69.507c-10.148,5.864-22.661,5.874-32.826,0.009c-10.158-5.862-16.415-16.699-16.415-28.426V186.493 c0-11.728,6.258-22.564,16.415-28.426c5.076-2.93,10.741-4.395,16.406-4.395c5.67,0,11.341,1.468,16.42,4.402l120.295,69.507 c10.149,5.864,16.4,16.696,16.4,28.418C364.639,267.722,358.387,278.553,348.238,284.418z"></path> </g> </g> </g></svg>
+                    <!--pause button-->
+                    <svg id="pause-icon" style="display: none;" fill="#0eaec4" height="64px" width="64px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" xml:space="preserve" stroke="#0eaec4"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M256,0C114.617,0,0,114.615,0,256s114.617,256,256,256s256-114.615,256-256S397.383,0,256,0z M224,320 c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h32c8.836,0,16,7.164,16,16V320z M352,320 c0,8.836-7.164,16-16,16h-32c-8.836,0-16-7.164-16-16V192c0-8.836,7.164-16,16-16h32c8.836,0,16,7.164,16,16V320z"></path> </g></svg>
+    
+    
+                </button>
+                <div class="progress-container">
+                    <div id="progress-bar"></div>
+                </div>
+                 
+          </div>
+          <p id="current-track">No Track Selected</p>
+          <audio src="" id="audio"></audio>
         </div>
-    </div>
+        
+        <div class="audio-list">
+            <label for="" class="uplod-label">Import Audio</label>
+            <input type="file" accept="audio/*" multiple id="audio-uplod">
+            <ul id="playlist">
+                <!--list audio akan di isi di javascript-->
+            </ul>
+        </div> 
     <script src="a-script.js"></script>
     
 </body>
