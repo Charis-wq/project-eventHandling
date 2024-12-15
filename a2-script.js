@@ -1,5 +1,5 @@
-
 let playlist = JSON.parse(localStorage.getItem('playlist')) || [];
+let currentIndex = 0;
 
 // Get elements from DOM
 const audio = document.getElementById('audio');
@@ -8,34 +8,50 @@ const playIcon = document.getElementById('play-icon');
 const pauseIcon = document.getElementById('pause-icon');
 const progressBar = document.getElementById('progress-bar');
 const playlistElement = document.getElementById('playlist');
-const audioUpload = document.getElementById('audio-uplod');
+const audioUpload = document.getElementById('audio-upload');
 const currentTrack = document.getElementById('current-track');
 
-// Function to create playlist
+// Create playlist
 function createPlaylist() {
     playlistElement.innerHTML = '';
     playlist.forEach((track, index) => {
         const li = document.createElement('li');
         li.textContent = track.title;
-        li.dataset.src = track.src;
+        li.dataset.index = index;
 
-        // Add event listener for playlist item
+        // Add click event
         li.addEventListener('click', () => {
-            audio.src = track.src;
+            loadTrack(index);
             audio.play();
-            updatePlayPauseIcon();
-
-            document.querySelectorAll('#playlist li').
-            forEach(item => item.classList.remove('active'));
-            li.classList.add('active');
-            currentTrack.textContent = track.title;
         });
 
         playlistElement.appendChild(li);
     });
+    updateActiveTrack();
 }
 
-// Function to update play/pause icon
+// Update active track in playlist
+function updateActiveTrack() {
+    document.querySelectorAll('#playlist li').forEach((item, index) => {
+        item.classList.toggle('active', index === currentIndex);
+    });
+}
+
+// Load track
+function loadTrack(index) {
+    currentIndex = index;
+    const track = playlist[currentIndex];
+    audio.src = track.src;
+    currentTrack.textContent = track.title;
+    updateActiveTrack();
+}
+
+// Save playlist to localStorage
+function savePlaylist() {
+    localStorage.setItem('playlist', JSON.stringify(playlist));
+}
+
+// Update play/pause icon
 function updatePlayPauseIcon() {
     if (audio.paused) {
         playIcon.style.display = 'block';
@@ -46,38 +62,7 @@ function updatePlayPauseIcon() {
     }
 }
 
-// Function to save playlist to localStorage
-function savePlaylist() {
-    localStorage.setItem('playlist', JSON.stringify(playlist));
-}
-
-// Initialize playlist
-createPlaylist();
-
-// Event listener for audio upload
-audioUpload.addEventListener('change', (event) => {
-    const files = Array.from(event.target.files);
-    files.forEach(file => {
-        if (!file.type.startsWith('audio/')) {
-            alert('Hanya file audio yang diperbolehkan!');
-            return;
-        }
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const track = {
-                title: file.name,
-                src: e.target.result
-            };
-            playlist.push(track);
-            createPlaylist();
-            savePlaylist();
-        };
-        reader.readAsDataURL(file);
-    });
-});
-
-// Event listener for play/pause button
+// Event listeners
 playPauseButton.addEventListener('click', () => {
     if (audio.paused) {
         audio.play();
@@ -87,20 +72,42 @@ playPauseButton.addEventListener('click', () => {
     updatePlayPauseIcon();
 });
 
-// Update progress bar
 audio.addEventListener('timeupdate', () => {
     const progress = (audio.currentTime / audio.duration) * 100;
     progressBar.style.width = `${progress}%`;
 });
 
-// Handle audio error
-audio.addEventListener('error', () => {
-    alert('Terjadi kesalahan saat memuat audio.');
+audio.addEventListener('ended', () => {
+    loadTrack((currentIndex + 1) % playlist.length);
+    audio.play();
 });
 
-// Load first track if playlist exists
+audioUpload.addEventListener('change', (event) => {
+    const files = Array.from(event.target.files);
+    files.forEach(file => {
+        if (!file.type.startsWith('audio/')) {
+            alert('Only audio files are allowed!');
+            return;
+        }
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const track = {
+                title: file.name,
+                src: e.target.result,
+            };
+            playlist.push(track);
+            createPlaylist();
+            savePlaylist();
+        };
+        reader.readAsDataURL(file);
+    });
+});
+
+// Initialize
 if (playlist.length > 0) {
-    const firstTrack = playlist[0];
-    audio.src = firstTrack.src;
-    currentTrack.textContent = firstTrack.title;
+    loadTrack(0);
+} else {
+    currentTrack.textContent = 'No track available';
 }
+createPlaylist();

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio App</title>
+    <link rel="stylesheet" href="a2-style.css">
+</head>
+<body>
+    <div class="audio-app">
+        <h1>Audio Player</h1>
+        <div class="player">
+            <audio id="audio" src=""></audio>
+            <div class="controls">
+                <button id="prev">⏮️</button>
+                <button id="play-pause">
+                    <span id="play-icon">▶️</span>
+                    <span id="pause-icon" style="display: none;">⏸️</span>
+                </button>
+                <button id="next">⏭️</button>
+            </div>
+            <div class="progress-container">
+                <div id="progress-bar"></div>
+            </div>
+            <p id="current-track">No track playing</p>
+        </div>
+
+        <input type="file" id="audio-upload"  multiple>
+        <ul id="playlist"></ul>
+    </div>
+    <script src="a2-script.js"></script>
+</body>
+</html>
